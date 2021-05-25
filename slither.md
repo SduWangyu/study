@@ -18,7 +18,12 @@ Slither的工作方式如下：
 3. SlithIR conversion：Slither将合约代码转换为[SlithIR](https://github.com/crytic/slither/wiki/SlithIR)（一种内部表示语言），目的是通过简单的API实现高精度分析，支持污点和值的跟踪，从而支持检测复杂的模型。
 4. 在代码分析阶段，Slither运行一组预定义的分析，包括合约中变量、函数的依赖关系；变量的读写和函数的权限控制。
 5. 经过Slither的核心处理之后，就可以提供漏洞检测、代码优化检测和代码理解输出等。
+
+
+
 #Slither
+
+
 ## A. 内置代码分析
 
 - **读/写**
