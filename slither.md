@@ -9,6 +9,16 @@ Slither是一个用Python 3编写的智能合约静态分析框架，提供如�
 - 代码理解（Code understanding）。Slither能够绘制合约的继承拓扑图，合约方法调用关系图等，帮助开发者理解代码。
 - 辅助代码审查（Assisted code review）。用户可以通过API与Slither进行交互。
 
+Slither的工作方式如下：
+
+
+
+1. Solidity compiler：智能合约源码经过solc编译后得到Solidity抽象语法树（Solidity Abstract Syntax Tree，AST）作为Slither的输入；可以指定Slither去调用一些常见的框架（包括Truffle，Embark和Dapp）去分析一份智能合约。
+2. information recovery（数据整合）：Slither会生成一些重要的信息，比如合约的继承图（inheritance graph）、控制流图（CFG）以及合约中函数列表。
+3. SlithIR conversion：Slither将合约代码转换为[SlithIR](https://github.com/crytic/slither/wiki/SlithIR)（一种内部表示语言），目的是通过简单的API实现高精度分析，支持污点和值的跟踪，从而支持检测复杂的模型。
+4. 在代码分析阶段，Slither运行一组预定义的分析，包括合约中变量、函数的依赖关系；变量的读写和函数的权限控制。
+5. 经过Slither的核心处理之后，就可以提供漏洞检测、代码优化检测和代码理解输出等。
+
 ## A. 内置代码分析
 
 - **读/写**
@@ -97,12 +107,3 @@ x3 = y1 + x2;
 
 
 
-Slither的工作方式如下：
-
-
-
-1. Solidity compiler：智能合约源码经过solc编译后得到Solidity抽象语法树（Solidity Abstract Syntax Tree，AST）作为Slither的输入；可以指定Slither去调用一些常见的框架（包括Truffle，Embark和Dapp）去分析一份智能合约。
-2. information recovery（数据整合）：Slither会生成一些重要的信息，比如合约的继承图（inheritance graph）、控制流图（CFG）以及合约中函数列表。
-3. SlithIR conversion：Slither将合约代码转换为[SlithIR](https://github.com/crytic/slither/wiki/SlithIR)（一种内部表示语言），目的是通过简单的API实现高精度分析，支持污点和值的跟踪，从而支持检测复杂的模型。
-4. 在代码分析阶段，Slither运行一组预定义的分析，包括合约中变量、函数的依赖关系；变量的读写和函数的权限控制。
-5. 经过Slither的核心处理之后，就可以提供漏洞检测、代码优化检测和代码理解输出等。
